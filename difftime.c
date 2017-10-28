@@ -1,23 +1,31 @@
 #include <stdio.h>
 #include <time.h>
+#include <stdlib.h>
 
-int main () {
-   time_t start_t, end_t;
-   double diff_t;
+int main (void)
+{
+        time_t start_t, end_t;
+        int diff_t;
+        int min_t = 0;
+        int hrs_t = 0;
 
-   printf("Starting of the program...\n");
-   time(&start_t);
+        printf("Timer Started\n");
+        time(&start_t);
+        getchar();
+        time(&end_t);
 
+        diff_t = difftime(end_t, start_t);
 
-   //printf("Sleeping for 5 seconds...\n");
-   //sleep(5);
-   getchar();
-
-   time(&end_t);
-   diff_t = difftime(end_t, start_t);
-
-   printf("Execution time = %f\n", diff_t);
-   printf("Exiting of the program...\n");
-
-   return(0);
+        if (diff_t < 60) {
+                printf("Execution time: %i seconds\n", diff_t);
+                exit(0);
+        }
+        if (diff_t >= 60, diff_t < 3600) {
+                printf("Execution time: %.0i minutes %i seconds\n", diff_t / 60, diff_t % 60);
+                exit(0);
+        }
+        if (diff_t >= 25) {
+                printf("Execution time: %.0i hours %.0i minutes %.0i seconds\n", diff_t / 3600, (diff_t / 60) % 3600 - (diff_t / 3600) * 60, diff_t % 60);
+        }
+        return(0);
 }
